@@ -4,20 +4,20 @@ import java.util.Arrays;
 
 public class Container<E> {
 
-    private static final Object[] EMPTY_ELEMENTDATA = {};
+    private static final Object[] EMPTY_DATA = {};
 
     private Object[] data;
     private int size;
 
     public Container() {
-        this.data = EMPTY_ELEMENTDATA;
+        this.data = EMPTY_DATA;
     }
 
     public Container(int initialSize) {
         if (initialSize > 0) {
             this.data = new Object[initialSize];
         } else if (initialSize == 0) {
-            this.data = EMPTY_ELEMENTDATA;
+            this.data = EMPTY_DATA;
         } else {
             throw new IllegalArgumentException("Illegal size: "+ initialSize);
         }
@@ -44,7 +44,7 @@ public class Container<E> {
     }
 
     private Object[] increase(int capacity) {
-        if (data.length > 0 || data != EMPTY_ELEMENTDATA) {
+        if (data.length > 0 || data != EMPTY_DATA) {
             return data = Arrays.copyOf(data, capacity);
         } else {
             return data = new Object[1];
@@ -67,11 +67,14 @@ public class Container<E> {
         if (index >= size)
             return null;
         E value = (E) data[index];
-        final int newSize;
-        if ((newSize = size - 1) > index)
+        delete(size-1, index);
+        return value;
+    }
+
+    private void delete(final int newSize, int index) {
+        if (newSize > index)
             System.arraycopy(data, index + 1, data, index, newSize - index);
         data[size = newSize] = null;
-        return value;
     }
 
     public void print() {
@@ -80,4 +83,5 @@ public class Container<E> {
             System.out.println(data[i]);
         }
     }
+
 }

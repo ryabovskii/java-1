@@ -1,13 +1,7 @@
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("hello");
-        System.out.println("world");
-
-        List<Integer> l = new ArrayList<>();
 
         Container<Integer> ar = new Container<>();
         ar.add(1);
@@ -20,6 +14,12 @@ public class Main {
         ar.delete(1);
         ar.print();
         ar.add(9);
+        ar.add(11);
         ar.print();
+        ar.delete(1);
+        ar.delete(1);
+        ar.add(13);
+        ar.print();
+
     }
 }
